@@ -4,9 +4,7 @@ function playSound(idElemAudio){
 
 const keywordList = document.querySelectorAll('.tecla');
 
-let count = 0
-
-while(count < 9){
+for(let count = 0; count<keywordList.length; count++){
     const keyword = keywordList[count];
     const instrument = keyword.classList[1];
 
@@ -14,6 +12,15 @@ while(count < 9){
 
     keyword.onclick = function(){
         playSound(idAudio);
+        console.log(idAudio);
     };
-    count++;
+    keyword.onkeydown = function(e){
+        if(e.code === 'Space' || e.code === 'Enter'){
+            keyword.classList.add('activa')
+        }
+    };
+    keyword.onkeyup = function (){
+        keyword.classList.remove('activa')
+    };
+
 }
